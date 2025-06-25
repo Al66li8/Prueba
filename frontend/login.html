@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Universidad Tres Culturas</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    /* LOGIN */
+    #loginSection {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f3f3f3;
+    }
+
+    .login-box {
+      width: 400px;
+      background-color: white;
+      padding: 2rem;
+      border: 5px solid #ccc;
+      border-radius: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #002244;
+    }
+
+    .crear-cuenta {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .crear-cuenta a {
+      color: #003366;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    /* CUESTIONARIO */
+    #cuestionarioSection {
+      display: none;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .main-layout {
+      display: flex;
+      height: 100%;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #e9e9e9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .logo-container img {
+      width: 30px;
+    }
+
+    .logo-container span {
+      font-size: 14px;
+      color: #003366;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .menu-botones {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .menu-botones button {
+      padding: 12px;
+      width: 100%;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .menu-botones button:hover {
+      background-color: #002244;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+      background-color: #fff;
+      overflow-y: auto;
+    }
+
+    .usuario-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      color: #4b2354;
+    }
+
+    .content h2 {
+      font-size: 20px;
+      color: #003366;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .preguntas {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .pregunta {
+      font-size: 16px;
+    }
+
+    .boton-enviar {
+      margin-top: 30px;
+      padding: 12px 20px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      align-self: center;
+      width: 200px;
+    }
+
+    .boton-enviar:hover {
+      background-color: #002244;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="loginSection">
+    <div class="login-box">
+      <div class="logo">
+        <img src="logo_utc.png" alt="Logo UTC" />
+      </div>
+      <h2>Universidad Tres Culturas</h2>
+      <form id="loginForm">
+        <div class="input-group">
+          <input type="text" id="usuario" placeholder="Usuario" required />
+        </div>
+        <div class="input-group">
+          <input type="password" id="contrasena" placeholder="Contraseña" required />
+        </div>
+        <button type="submit">Entrar</button>
+      </form>
+      <div class="crear-cuenta">
+        <a href="#">¿No tienes cuenta? Crea una</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUESTIONARIO -->
+  <div id="cuestionarioSection">
+    <div class="main-layout">
+      <div class="sidebar">
+        <div class="logo-container">
+          <img src="logo_utc.png" alt="Logo">
+          <span>Universidad<br>Tres Culturas</span>
+        </div>
+        <div class="menu-botones">
+          <button onclick="mostrarSeccion('personal')">Cuestionario Personal</button>
+          <button onclick="mostrarSeccion('habilidades')">Cuestionario de Habilidades</button>
+          <button onclick="mostrarSeccion('retro')">Retroalimentación</button>
+        </div>
+      </div>
+
+      <div class="content" id="seccionContenido">
+        <div class="usuario-icon">👤</div>
+        <h2>Realiza el siguiente cuestionario con tus datos personales</h2>
+        <div class="preguntas" id="preguntas">
+          <div class="pregunta">1.- ¿Cuál es tu nombre completo?</div>
+          <div class="pregunta">2.- ¿Cuál es tu edad?</div>
+          <div class="pregunta">3.- ¿Qué carrera estudias?</div>
+          <div class="pregunta">4.- ¿En qué campus estás inscrito?</div>
+        </div>
+        <button class="boton-enviar">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const usuario = document.getElementById('usuario').value.trim();
+      const contrasena = document.getElementById('contrasena').value.trim();
+
+      if (usuario && contrasena) {
+        document.getElementById('loginSection').style.display = 'none';
+        document.getElementById('cuestionarioSection').style.display = 'block';
+      } else {
+        alert("Por favor, completa todos los campos.");
+      }
+    });
+
+    function mostrarSeccion(seccion) {
+      const titulo = document.querySelector("#seccionContenido h2");
+      const preguntas = document.getElementById("preguntas");
+      let contenido = "";
+
+      if (seccion === 'personal') {
+        titulo.textContent = "Realiza el siguiente cuestionario con tus datos personales";
+        contenido = `
+          <div class="pregunta">1.- ¿Cuál es tu nombre completo?</div>
+          <div class="pregunta">2.- ¿Cuál es tu edad?</div>
+          <div class="pregunta">3.- ¿Qué carrera estudias?</div>
+          <div class="pregunta">4.- ¿En qué campus estás inscrito?</div>
+        `;
+      } else if (seccion === 'habilidades') {
+        titulo.textContent = "Cuestionario de habilidades";
+        contenido = `
+          <div class="pregunta">1.- ¿Sabes programar en HTML?</div>
+          <div class="pregunta">2.- ¿Has usado bases de datos?</div>
+          <div class="pregunta">3.- ¿Tienes conocimientos de Excel?</div>
+          <div class="pregunta">4.- ¿Dominas algún lenguaje de programación?</div>
+        `;
+      } else if (seccion === 'retro') {
+        titulo.textContent = "Retroalimentación";
+        contenido = `
+          <div class="pregunta">1.- ¿Qué te pareció el cuestionario?</div>
+          <div class="pregunta">2.- ¿Qué mejorarías?</div>
+          <div class="pregunta">3.- ¿Recomendarías esta herramienta?</div>
+          <div class="pregunta">4.- Otros comentarios:</div>
+        `;
+      }
+
+      preguntas.innerHTML = contenido;
+    }
+  </script>
+</body>
+</html>
+
